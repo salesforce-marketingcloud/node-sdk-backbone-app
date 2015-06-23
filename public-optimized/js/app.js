@@ -1,0 +1,1 @@
+define(["require","jquery","underscore","backbone","js/routing/router","fuelux"],function(r){"use strict";var e=(r("jquery"),r("underscore"),r("backbone")),u=r("js/routing/router");r("fuelux");var t=new u;window.App.router=t,e.history.start({pushState:!0})});

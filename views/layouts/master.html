@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" class="fuelux">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+	
+	<link rel="stylesheet" type="text/css" href="/lib/fuelux.css" /> <!-- trying to fix a loading timing issue -->	
+	<link rel="stylesheet" type="text/css" href="/lib/fuelux/fuelux-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap.min.css" /> <!-- trying to fix a loading timing issue -->
+	
+	<script src="/lib/jquery.min.js"></script> <!-- trying to fix a loading timing issue -->
+	<script src="/lib/bootstrap.min.js"></script> <!-- trying to fix a loading timing issue -->
+	<script data-main="{{ ui.staticBase }}js/main.js" src="/lib/requirejs/require.js"></script>
+	<script>
+	// this token needs to be sent to the server on any request other than GET.
+	// basically any route that modifies data needs this token to ensure it's from this app
+	// header name should be "_csrf"
+	// Example of Backbone integration can be seen here --> https://gist.github.com/vernak2539/8337545#file-backbone-csrf-js
+	window.app                = {};
+	window.app.csrfToken      = '{{ csrfToken }}';
+	window.app.serverUIConfig = {{{ uiJSON }}};
+	define( 'csrf-token', '{{ csrfToken }}' );
+	define( 'server-ui-config', {{{ uiJSON }}} );
+	</script>
+</head>
+<body>
+	<!--[if lt IE 7]>
+		<p style="margin: 0.2em 0; background: #ccc; color: #000; padding: 0.2em 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	{{{ body }}}
+</body>
+</html>

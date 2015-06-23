@@ -1,0 +1,63 @@
+{
+  "name": "node-sdk-backbone-app",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt tests",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.exacttarget.com/ETLabs/node-sdk-backbone-app.git"
+  },
+  "author": "Drew Simmons",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "compression": "^1.0.8",
+    "config": "^0.4.36",
+    "errorhandler": "^1.1.1",
+    "express": "^4.6.1",
+    "express-less-middleware": "^1.1.3",
+    "express-session": "^1.6.5",
+    "express3-handlebars": "^0.5.0",
+    "graceful-fs": "^3.0.2",
+    "jwt-simple": "^0.3.0",
+    "method-override": "^2.1.1",
+    "request": "^2.57.0",
+    "fuelsdk-node": "^1.0.0"
+  },
+  "devDependencies": {
+    "matchdep": "~0.3.0",
+    "grunt": "~0.4.2",
+    "grunt-karma": "~0.6.2",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-script-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.5",
+    "karma-coffee-preprocessor": "~0.1.2",
+    "requirejs": "~2.1.9",
+    "karma-requirejs": "~0.2.1",
+    "karma-phantomjs-launcher": "~0.1.1",
+    "karma": "~0.10.9",
+    "karma-coverage": "~0.1.4",
+    "karma-chai": "0.0.2",
+    "karma-mocha": "0.1.3",
+    "karma-sinon": "~1.0.0",
+    "mocha": "~1.16.2",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-complexity": "~0.1.3",
+    "grunt-contrib-imagemin": "~0.4.0",
+    "chai": "~1.8.1",
+    "sinon": "~1.7.3",
+    "grunt-text-replace": "~0.3.11",
+    "grunt-git-describe": "~2.3.2",
+    "grunt-bump": "0.0.13"
+  }
+}

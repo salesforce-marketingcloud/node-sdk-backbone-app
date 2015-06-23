@@ -1,0 +1,13 @@
+name: node-sdk-base-app
+instances: 1
+framework:
+  type: node
+  runtime: node010
+mem: 256
+services:
+  node-sdk-base-app-redis-store: redis
+  node-sdk-base-app-db: mongodb
+ignores: ["coverage", "test", "src", "*.iml", "READMEmd", "karma.conf.js", ".idea", ".gitignore", ".jshintrc", "node_modules/grunt*/", "node_modules/karma*/", "node_modules/chai/", "node_modules/sinon/", "node_modules/supertest/", "node_modules/mocha/", "node_modules/matchdep/", "npm-debug.log"]
+hooks:
+  pre-staging:
+    - npm config set production true

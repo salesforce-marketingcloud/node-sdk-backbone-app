@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "description": "It is a super cool new app for the Marketing Cloud",
+  "private": true,
+  "location": "git@github.exacttarget.com:MarketingCloudDev/derelicte-campaign.git",
+  "authors": [
+    "Derek Zoolander <dzoolander@exacttarget.com>"
+  ],
+  "dependencies": {
+    "requirejs": "requirejs#2.1.9",
+    "jquery": "jquery#1.10.2",
+    "backbone": "backbone#1.1.0",
+    "underscore": "underscore#1.5.2",
+    "json2": "#*",
+    "handlebars": "handlebars#3.0.3",
+    "jquery.cookie": "~1.4.1",
+    "moment": "~2.10.3",
+    "jquery.validate": "~1.13.0",
+    "text": "~2.0.14",
+    "fuelux": "~3.7.3"
+  }
+}

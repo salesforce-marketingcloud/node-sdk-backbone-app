@@ -1,0 +1,1 @@
+define([],function(){"use strict";return function(){function n(n,t){return n&&t?n+t:!1}function t(n,t){return n&&t?n-t:!1}return{add:n,subtract:t}}});

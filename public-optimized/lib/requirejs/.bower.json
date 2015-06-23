@@ -1,0 +1,14 @@
+{
+  "name": "requirejs",
+  "homepage": "https://github.com/jrburke/requirejs-bower",
+  "version": "2.1.9",
+  "_release": "2.1.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.9",
+    "commit": "d9dbdb06aa65645babe9a1fa6ade702ecf287931"
+  },
+  "_source": "git://github.com/jrburke/requirejs-bower.git",
+  "_target": "2.1.9",
+  "_originalSource": "requirejs"
+}
