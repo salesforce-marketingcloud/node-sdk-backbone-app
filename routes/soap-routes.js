@@ -19,7 +19,7 @@ soapRouter.get( '/test-soap', function( req, res ) {
 	};
 
 	ET_Client.SoapClient.retrieve(
-		'Email',
+		'Email',   //Object types: http://help.exacttarget.com/en/technical_library/web_service_guide/objects/
 		["ID", "Name", "Subject", "CategoryID", "EmailType"],
 		options,
 		function( err, response ) {

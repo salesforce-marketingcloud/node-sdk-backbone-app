@@ -31,6 +31,7 @@ STK={{stack}}
 
 $ NODE_ENV=dev CID={{clientId}} CSEC={{clientSecret}} STK={{stack}} node index	
 
+(remove all curly braces)
 
 
 ##Building your app:

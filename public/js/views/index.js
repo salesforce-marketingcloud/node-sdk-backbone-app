@@ -102,9 +102,12 @@ define(function(require) {
 				url: url,
 				type: 'GET',
 				dataType: 'json',
-				success: function(data) {
-					$('#dataResults').val(JSON.stringify(data, null, '\t'));
-				}
+				
+			})
+			.done(function(data) {
+				$('#dataResults').val(JSON.stringify(data, null, '\t'));
+			}).fail(function(data) {
+				$('#dataResults').val(JSON.stringify(data, null, '\t'));
 			});        
         },       
         onBtnTestRestClick: function() {
