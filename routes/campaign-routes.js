@@ -43,7 +43,7 @@ restRouter.get( '/test-campaign-get', function( req, res ) {
 restRouter.get( '/test-campaign-patch', function( req, res ) {
 	var options = {	
 		id: 553,	
-		props: {"description": "New desc for SDK Created Campaign"}
+		props: {"name" : "SDKCampaign", "description": "New desc for SDK Created Campaign"} //include all fields, even if not changed.
 	};	
 	var campaign = ET_Client.Campaign(options);
 		
@@ -56,7 +56,7 @@ restRouter.get( '/test-campaign-patch', function( req, res ) {
 
 restRouter.get( '/test-campaign-delete', function( req, res ) {
 	var options = {
-		id: 557
+		id: 560
 	};	
 	var campaign = ET_Client.Campaign(options);
 	
@@ -68,6 +68,57 @@ restRouter.get( '/test-campaign-delete', function( req, res ) {
 });
 
 
+//****************************************************************************************
+//								Campaign Asset
+//****************************************************************************************
+
+restRouter.get( '/test-campaign-asset-post', function( req, res ) {
+	
+	var options = {
+		props: {"id" : "553", "ids": [3509], "type": "EMAIL"}
+	};			
+	
+	var campaignAsset = ET_Client.CampaignAsset(options);	
+			
+	campaignAsset.post(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+		var result = response && response.body ? response.body : response;
+		response && res.status(statusCode).send( result );
+	});
+	
+});
+
+restRouter.get( '/test-campaign-asset-get', function( req, res ) {
+
+	var options = {
+		props: {"id": "553", "assetId": "774", "$page": "1", "$pageSize": "10", "$orderBy": "ModifiedDate DESC"} //for all, do not include assetId.
+	};	
+	var campaignAsset = ET_Client.CampaignAsset(options);
+	
+	campaignAsset.get(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+		var result = response && response.body ? response.body : response;
+		response && res.status(statusCode).send( result );
+	});		
+	
+});
+
+restRouter.get( '/test-campaign-asset-patch', function( req, res ) {
+	res.status(500).send( {error: 'Update is not available for this object.'} );
+});
+
+restRouter.get( '/test-campaign-asset-delete', function( req, res ) {
+	var options = {
+		props: {"id": "553", "assetId": "774"}
+	};	
+	var campaignAsset = ET_Client.CampaignAsset(options);
+	
+	campaignAsset.delete(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+		var result = response && response.body ? response.body : response;
+		res.status(statusCode).send( result );
+	});
+});
 
 
 

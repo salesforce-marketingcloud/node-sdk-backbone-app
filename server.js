@@ -106,6 +106,7 @@ app.use( '/', routes.rest );
 app.use( '/', routes.soap );
 app.use( '/', routes.de );
 app.use( '/', routes.campaign );
+app.use( '/', routes.contentArea );
 
 function start() {
 	// creating server on SSL port based on config options (should only be in dev.js)
