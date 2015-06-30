@@ -24,7 +24,8 @@
 					<label class="radio"><input type="radio" name="datatype" value="post">Create</label>
 					<label class="radio"><input type="radio" name="datatype" value="get">Retrieve</label>
 					<label class="radio"><input type="radio" name="datatype" value="patch">Update</label>
-					<label class="radio"><input type="radio" name="datatype" value="delete">Delete</label>			
+					<label class="radio"><input type="radio" name="datatype" value="delete">Delete</label>
+					<label class="radio" style="color:#ccc"><input type="radio" name="datatype" value="send" disabled="disabled">Send</label>			
 				</div>
 		
 				<div class="control-group" id="objectTypeGroup">
@@ -34,6 +35,17 @@
 					<label class="radio"><input type="radio" name="objecttype" value="de">Data Extension</label>
 					<label class="radio"><input type="radio" name="objecttype" value="de-column">DE Column</label>
 					<label class="radio"><input type="radio" name="objecttype" value="de-row">DE Row</label>
+					<label class="radio"><input type="radio" name="objecttype" value="email">Email</label>
+					<label class="radio"><input type="radio" name="objecttype" value="folder">Folder</label>
+					<label class="radio"><input type="radio" name="objecttype" value="list">List</label>
+					<label class="radio"><input type="radio" name="objecttype" value="list-subscriber">List Subscriber</label>
+					<label class="radio"><input type="radio" name="objecttype" value="subscriber">Subscriber</label>
+					<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" id="rdoTriggeredsend">Triggered Send</label>
+					<label class="radio"><input type="radio" name="objecttype" value="bounceevent">Bounce Event</label>
+					<label class="radio"><input type="radio" name="objecttype" value="clickevent">Click Event</label>
+					<label class="radio"><input type="radio" name="objecttype" value="openevent">Open Event</label>
+					<label class="radio"><input type="radio" name="objecttype" value="sentevent">Sent Event</label>
+					<label class="radio"><input type="radio" name="objecttype" value="unsubevent">Unsub Event</label>
 				</div>
 		
 				<button type="button" class="btn btn-default" id="bTest">Test</button>	

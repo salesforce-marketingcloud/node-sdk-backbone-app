@@ -28,6 +28,7 @@ define(function(require) {
         	'click #bTestRest': 'onBtnTestRestClick'
         	,'click #bTestSoap': 'onBtnTestSoapClick'
         	,'click #bTest': 'onBtnTestClick'
+        	,'click #objectTypeGroup input': 'onObjectTypeGroupClick'
         },
         initialize: function() {
         	console.log('initialize');
@@ -123,7 +124,16 @@ define(function(require) {
         	var datatype = $('#dataTypeGroup input:radio:checked').val();
         	var objtype = $('#objectTypeGroup input:radio:checked').val();
         	this.testGet('test-'+objtype+'-'+datatype);
-        }             
+        },
+        onObjectTypeGroupClick: function() {
+        	var result = $('#objectTypeGroup input:radio:checked').val();
+        	var disabled = (result !== 'triggeredsend');
+        	var color = disabled ? '#ccc' : '#000';
+        	var $input = $('#dataTypeGroup :input:radio[value="send"]');
+        	$input.attr('disabled',disabled);
+        	$input.parent().css("color", color);
+        	$input.prop('checked', false);
+        }           
     });
 
 });

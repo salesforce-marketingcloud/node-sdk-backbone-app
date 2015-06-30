@@ -8,37 +8,41 @@ var ET_Client = require( '../lib/IET_Client' );
 
 
 // setting up routes
-restRouter.get( '/test-contentarea-post', function( req, res ) {
+restRouter.get( '/test-subscriber-post', function( req, res ) {
 	
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some HTML Content Goes here</b>"}
-	};			
+		props: {"EmailAddress" : "newexample@bh.exacttarget.com"
+				,"SubscriberKey" : "SDKSubscriber2"
+				,"Attributes": [{'Name': 'First Name', 'Value': 'ExactTarget Example'}]
+				//,"Lists": [{'ID':'6286','Status':'Active'}] //to add to specific lists
+		}
+	};				
 	
-	var contentArea = ET_Client.ContentArea(options);	
+	var subscriber = ET_Client.Subscriber(options);	
 			
-	contentArea.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCocontentArea ? response.res.statusCode : 200;
+	subscriber.post(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 	
 });
 
-restRouter.get( '/test-contentarea-get', function( req, res ) {
+restRouter.get( '/test-subscriber-get', function( req, res ) {
 
 	var options = {
-		props: ['Name', 'CustomerKey']  //required
+		props: ["EmailAddress","SubscriberKey"]  //required
 		/*
 		,filter: {						//remove filter for all.
-        	leftOperand: 'Name',
+        	leftOperand: 'SubscriberKey',
         	operator: 'equals',
-        	rightOperand: 'ExampleContentArea'
+        	rightOperand: 'SDKSubscriber'
    		}
    		*/
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var subscriber = ET_Client.Subscriber(options);
 	
-	contentArea.get(function(response) {
+	subscriber.get(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
@@ -46,32 +50,31 @@ restRouter.get( '/test-contentarea-get', function( req, res ) {
 	
 });
 
-restRouter.get( '/test-contentarea-patch', function( req, res ) {
+restRouter.get( '/test-subscriber-patch', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some (new) HTML Content Goes here</b>"}
+		props: {"Status" : "Unsubscribed", "SubscriberKey" : "SDKSubscriber"}
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var subscriber = ET_Client.Subscriber(options);
 	
-	contentArea.patch(function(response) {
+	subscriber.patch(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 });
 
-restRouter.get( '/test-contentarea-delete', function( req, res ) {
+restRouter.get( '/test-subscriber-delete', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea"}  //required
+		props: {"SubscriberKey" : "SDKSubscriber"}  //required
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var subscriber = ET_Client.Subscriber(options);
 	
-	contentArea.delete(function(response) {
+	subscriber.delete(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 });
-
 
 
 

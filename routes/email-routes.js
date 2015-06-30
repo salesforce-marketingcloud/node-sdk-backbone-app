@@ -8,37 +8,37 @@ var ET_Client = require( '../lib/IET_Client' );
 
 
 // setting up routes
-restRouter.get( '/test-contentarea-post', function( req, res ) {
+restRouter.get( '/test-email-post', function( req, res ) {
 	
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some HTML Content Goes here</b>"}
+		props: {"CustomerKey" : "SDK Example", "Name":"SDK Example", "Subject" : "Created Using the SDK", "HTMLBody": "<b>Some HTML Goes here</b>", "EmailType" : "HTML", "IsHTMLPaste" : "true"}
 	};			
 	
-	var contentArea = ET_Client.ContentArea(options);	
+	var email = ET_Client.Email(options);	
 			
-	contentArea.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCocontentArea ? response.res.statusCode : 200;
+	email.post(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 	
 });
 
-restRouter.get( '/test-contentarea-get', function( req, res ) {
+restRouter.get( '/test-email-get', function( req, res ) {
 
 	var options = {
-		props: ['Name', 'CustomerKey']  //required
+		props: ['Name', 'CustomerKey', 'ID']  //required
 		/*
 		,filter: {						//remove filter for all.
         	leftOperand: 'Name',
         	operator: 'equals',
-        	rightOperand: 'ExampleContentArea'
+        	rightOperand: 'SDK Example'
    		}
    		*/
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var email = ET_Client.Email(options);
 	
-	contentArea.get(function(response) {
+	email.get(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
@@ -46,26 +46,26 @@ restRouter.get( '/test-contentarea-get', function( req, res ) {
 	
 });
 
-restRouter.get( '/test-contentarea-patch', function( req, res ) {
+restRouter.get( '/test-email-patch', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some (new) HTML Content Goes here</b>"}
+		props: {"CustomerKey" : "SDK Example", "Name" : "SDK Example", "Content" : "<b>Some (new) HTML Content Goes here</b>", "EmailType" : "HTML", "IsHTMLPaste" : "true"}
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var email = ET_Client.Email(options);
 	
-	contentArea.patch(function(response) {
+	email.patch(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 });
 
-restRouter.get( '/test-contentarea-delete', function( req, res ) {
+restRouter.get( '/test-email-delete', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea"}  //required
+		props: {"CustomerKey" : "SDK Example"}  //required
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var email = ET_Client.Email(options);
 	
-	contentArea.delete(function(response) {
+	email.delete(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );

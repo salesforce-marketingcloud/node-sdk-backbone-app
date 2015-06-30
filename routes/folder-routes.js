@@ -8,37 +8,37 @@ var ET_Client = require( '../lib/IET_Client' );
 
 
 // setting up routes
-restRouter.get( '/test-contentarea-post', function( req, res ) {
+restRouter.get( '/test-folder-post', function( req, res ) {
 	
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some HTML Content Goes here</b>"}
+		props: {"CustomerKey" : "SDK Folder", "Name" : "SDK Folder", "Description" : "SDK Example Folder", "ContentType": "EMAIL", "ParentFolder" : {"ID" : "1705"}, "AllowChildren" : "true", "IsEditable" : "true" }
 	};			
 	
-	var contentArea = ET_Client.ContentArea(options);	
+	var folder = ET_Client.Folder(options);	
 			
-	contentArea.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCocontentArea ? response.res.statusCode : 200;
+	folder.post(function(response) {
+		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 	
 });
 
-restRouter.get( '/test-contentarea-get', function( req, res ) {
+restRouter.get( '/test-folder-get', function( req, res ) {
 
 	var options = {
-		props: ['Name', 'CustomerKey']  //required
+		props: ["ParentFolder.ID", "ID", "Name"]  //required
 		/*
 		,filter: {						//remove filter for all.
-        	leftOperand: 'Name',
+        	leftOperand: 'ID',
         	operator: 'equals',
-        	rightOperand: 'ExampleContentArea'
+        	rightOperand: 'SDK Example'
    		}
    		*/
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var folder = ET_Client.Folder(options);
 	
-	contentArea.get(function(response) {
+	folder.get(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
@@ -46,26 +46,26 @@ restRouter.get( '/test-contentarea-get', function( req, res ) {
 	
 });
 
-restRouter.get( '/test-contentarea-patch', function( req, res ) {
+restRouter.get( '/test-folder-patch', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some (new) HTML Content Goes here</b>"}
+		props: {"ID": "56337", "Name" : "SDK Example, now Updated!"}
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var folder = ET_Client.Folder(options);
 	
-	contentArea.patch(function(response) {
+	folder.patch(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
 	});
 });
 
-restRouter.get( '/test-contentarea-delete', function( req, res ) {
+restRouter.get( '/test-folder-delete', function( req, res ) {
 	var options = {
-		props: {"CustomerKey" : "ExampleContentArea"}  //required
+		props: {"ID": "56337"}  //required
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var folder = ET_Client.Folder(options);
 	
-	contentArea.delete(function(response) {
+	folder.delete(function(response) {
 		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
 		var result = response && response.body ? response.body : response;
 		response && res.status(statusCode).send( result );
