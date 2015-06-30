@@ -1,5 +1,6 @@
 # node-sdk-backbone-app
 
+![alt tag](sdk-backbone-app.png)
 
 ## $ node index
 
