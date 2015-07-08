@@ -26,12 +26,16 @@ restRouter.get( '/test-bounceevent-get', function( req, res ) {
    		}
    		*/
 	};	
-	var bounceevent = ET_Client.BounceEvent(options);
+	var bounceevent = ET_Client.bounceEvent(options);
 	
-	bounceevent.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	bounceevent.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -66,12 +70,16 @@ restRouter.get( '/test-clickevent-get', function( req, res ) {
    		}
    		*/
 	};	
-	var clickevent = ET_Client.ClickEvent(options);
+	var clickevent = ET_Client.clickEvent(options);
 	
-	clickevent.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	clickevent.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -106,12 +114,16 @@ restRouter.get( '/test-openevent-get', function( req, res ) {
    		}
    		*/
 	};	
-	var openevent = ET_Client.OpenEvent(options);
+	var openevent = ET_Client.openEvent(options);
 	
-	openevent.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	openevent.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -146,12 +158,16 @@ restRouter.get( '/test-sentevent-get', function( req, res ) {
    		}
    		*/
 	};	
-	var sentevent = ET_Client.SentEvent(options);
+	var sentevent = ET_Client.sentEvent(options);
 	
-	sentevent.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	sentevent.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -186,12 +202,16 @@ restRouter.get( '/test-unsubevent-get', function( req, res ) {
    		}
    		*/
 	};	
-	var unsubevent = ET_Client.UnsubEvent(options);
+	var unsubevent = ET_Client.unsubEvent(options);
 	
-	unsubevent.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	unsubevent.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });

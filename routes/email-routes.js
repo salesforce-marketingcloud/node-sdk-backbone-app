@@ -14,12 +14,16 @@ restRouter.get( '/test-email-post', function( req, res ) {
 		props: {"CustomerKey" : "SDK Example", "Name":"SDK Example", "Subject" : "Created Using the SDK", "HTMLBody": "<b>Some HTML Goes here</b>", "EmailType" : "HTML", "IsHTMLPaste" : "true"}
 	};			
 	
-	var email = ET_Client.Email(options);	
+	var email = ET_Client.email(options);	
 			
-	email.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	email.post(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 	
 });
@@ -36,12 +40,16 @@ restRouter.get( '/test-email-get', function( req, res ) {
    		}
    		*/
 	};	
-	var email = ET_Client.Email(options);
+	var email = ET_Client.email(options);
 	
-	email.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	email.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -50,12 +58,16 @@ restRouter.get( '/test-email-patch', function( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "SDK Example", "Name" : "SDK Example", "Content" : "<b>Some (new) HTML Content Goes here</b>", "EmailType" : "HTML", "IsHTMLPaste" : "true"}
 	};	
-	var email = ET_Client.Email(options);
+	var email = ET_Client.email(options);
 	
-	email.patch(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	email.patch(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 
@@ -63,12 +75,16 @@ restRouter.get( '/test-email-delete', function( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "SDK Example"}  //required
 	};	
-	var email = ET_Client.Email(options);
+	var email = ET_Client.email(options);
 	
-	email.delete(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	email.delete(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 

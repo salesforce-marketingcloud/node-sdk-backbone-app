@@ -23,12 +23,18 @@ soapRouter.get( '/test-soap', function( req, res ) {
 		["ID", "Name", "Subject", "CategoryID", "EmailType"],
 		options,
 		function( err, response ) {
-			if ( err ) {
-				res.status(500).send( err );
+			if (err) {
+				res.status(500).send( err )
+			} else {
+				var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+				var result = response && response.body ? response.body : response;
+				response && res.status(statusCode).send( result );
 			}
-			response && res.status(200).send( response.body );
 		}
 	);	
+	
+	
+	
 	
 });
 

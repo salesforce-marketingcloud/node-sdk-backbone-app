@@ -14,12 +14,16 @@ restRouter.get( '/test-list-post', function( req, res ) {
 		props: {"ListName" : "SDKList", "Description" : "SDK Created List"}
 	};			
 	
-	var list = ET_Client.List(options);	
+	var list = ET_Client.list(options);	
 			
-	list.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	list.post(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 	
 });
@@ -36,12 +40,16 @@ restRouter.get( '/test-list-get', function( req, res ) {
    		}
    		*/
 	};	
-	var list = ET_Client.List(options);
+	var list = ET_Client.list(options);
 	
-	list.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	list.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -50,12 +58,16 @@ restRouter.get( '/test-list-patch', function( req, res ) {
 	var options = {
 		props: {"ID": "6284", "ListName" : "SDK Example, now Updated!"}
 	};	
-	var list = ET_Client.List(options);
+	var list = ET_Client.list(options);
 	
-	list.patch(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	list.patch(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 
@@ -63,12 +75,16 @@ restRouter.get( '/test-list-delete', function( req, res ) {
 	var options = {
 		props: {"ID": "6284"}  //required
 	};	
-	var list = ET_Client.List(options);
+	var list = ET_Client.list(options);
 	
-	list.delete(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	list.delete(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 
@@ -94,12 +110,16 @@ restRouter.get( '/test-list-subscriber-get', function( req, res ) {
    		}
    		*/
 	};	
-	var listsub = ET_Client.ListSubscriber(options);
+	var listsub = ET_Client.listSubscriber(options);
 	
-	listsub.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	listsub.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });

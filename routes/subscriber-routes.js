@@ -18,12 +18,16 @@ restRouter.get( '/test-subscriber-post', function( req, res ) {
 		}
 	};				
 	
-	var subscriber = ET_Client.Subscriber(options);	
+	var subscriber = ET_Client.subscriber(options);	
 			
-	subscriber.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	subscriber.post(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 	
 });
@@ -40,12 +44,16 @@ restRouter.get( '/test-subscriber-get', function( req, res ) {
    		}
    		*/
 	};	
-	var subscriber = ET_Client.Subscriber(options);
+	var subscriber = ET_Client.subscriber(options);
 	
-	subscriber.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	subscriber.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -54,12 +62,16 @@ restRouter.get( '/test-subscriber-patch', function( req, res ) {
 	var options = {
 		props: {"Status" : "Unsubscribed", "SubscriberKey" : "SDKSubscriber"}
 	};	
-	var subscriber = ET_Client.Subscriber(options);
+	var subscriber = ET_Client.subscriber(options);
 	
-	subscriber.patch(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	subscriber.patch(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 
@@ -67,12 +79,16 @@ restRouter.get( '/test-subscriber-delete', function( req, res ) {
 	var options = {
 		props: {"SubscriberKey" : "SDKSubscriber"}  //required
 	};	
-	var subscriber = ET_Client.Subscriber(options);
+	var subscriber = ET_Client.subscriber(options);
 	
-	subscriber.delete(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	subscriber.delete(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 

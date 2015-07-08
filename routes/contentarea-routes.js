@@ -14,12 +14,16 @@ restRouter.get( '/test-contentarea-post', function( req, res ) {
 		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some HTML Content Goes here</b>"}
 	};			
 	
-	var contentArea = ET_Client.ContentArea(options);	
+	var contentArea = ET_Client.contentArea(options);	
 			
-	contentArea.post(function(response) {
-		var statusCode =  response && response.res && response.res.statusCocontentArea ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	contentArea.post(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 	
 });
@@ -36,12 +40,16 @@ restRouter.get( '/test-contentarea-get', function( req, res ) {
    		}
    		*/
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var contentArea = ET_Client.contentArea(options);
 	
-	contentArea.get(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	contentArea.get(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});		
 	
 });
@@ -50,12 +58,16 @@ restRouter.get( '/test-contentarea-patch', function( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "ExampleContentArea", "Name" : "ExampleContentArea", "Content" : "<b>Some (new) HTML Content Goes here</b>"}
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var contentArea = ET_Client.contentArea(options);
 	
-	contentArea.patch(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	contentArea.patch(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 
@@ -63,12 +75,16 @@ restRouter.get( '/test-contentarea-delete', function( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "ExampleContentArea"}  //required
 	};	
-	var contentArea = ET_Client.ContentArea(options);
+	var contentArea = ET_Client.contentArea(options);
 	
-	contentArea.delete(function(response) {
-		var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
-		var result = response && response.body ? response.body : response;
-		response && res.status(statusCode).send( result );
+	contentArea.delete(function(err,response) {
+		if (err) {
+			res.status(500).send( err )
+		} else {
+			var statusCode =  response && response.res && response.res.statusCode ? response.res.statusCode : 200;
+			var result = response && response.body ? response.body : response;
+			response && res.status(statusCode).send( result );
+		}
 	});
 });
 

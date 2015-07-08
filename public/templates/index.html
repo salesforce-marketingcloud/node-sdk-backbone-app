@@ -9,52 +9,68 @@
 
 	<div class="well" id="headerPane">
 		<h2>Salesforce Marketing Cloud Heroku Button App</h2>
-		<p>Welcome to your new Marketing Cloud-enabled grunt/bootstrap/fuelux/handlebars/backbone/express4/node/heroku app.</p>			
+		<p>Welcome to your new Marketing Cloud-enabled grunt/bootstrap/fuelux/handlebars/backbone/express4/node/heroku app.  This application demonstrates the fuel node SDK, allowing access to node-specific Marketing Cloud objects.</p>
+		<p/>
+		<p/>
+		<p>Note: Some tests may need to be modified (in the code) to work with your particular MC account data.</p>			
 	</div>
 	<div class="well">
 		<div class="row" style="margin-left:0px;">
-			<p>Note: Some tests may need to be modified (in the code) to work with your particular MC account data.</p>
-			<div class="span4">
-				<button type="button" class="btn btn-default" id="bTestRest">Test REST</button>
-				<button type="button" class="btn btn-default" id="bTestSoap">Test SOAP</button>
-				<p/>
-				<hr class="divider" style="margin:5px 0 5px;">
-		
-				<div class="control-group" id="dataTypeGroup">
-					<label class="radio"><input type="radio" name="datatype" value="post">Create</label>
-					<label class="radio"><input type="radio" name="datatype" value="get">Retrieve</label>
-					<label class="radio"><input type="radio" name="datatype" value="patch">Update</label>
-					<label class="radio"><input type="radio" name="datatype" value="delete">Delete</label>
-					<label class="radio" style="color:#ccc"><input type="radio" name="datatype" value="send" disabled="disabled">Send</label>			
-				</div>
-		
-				<div class="control-group" id="objectTypeGroup">
-					<label class="radio"><input type="radio" name="objecttype" value="campaign">Campaign</label>
-					<label class="radio"><input type="radio" name="objecttype" value="campaign-asset">Campaign Asset</label>
-					<label class="radio"><input type="radio" name="objecttype" value="contentarea">Content Area</label>
-					<label class="radio"><input type="radio" name="objecttype" value="de">Data Extension</label>
-					<label class="radio"><input type="radio" name="objecttype" value="de-column">DE Column</label>
-					<label class="radio"><input type="radio" name="objecttype" value="de-row">DE Row</label>
-					<label class="radio"><input type="radio" name="objecttype" value="email">Email</label>
-					<label class="radio"><input type="radio" name="objecttype" value="folder">Folder</label>
-					<label class="radio"><input type="radio" name="objecttype" value="list">List</label>
-					<label class="radio"><input type="radio" name="objecttype" value="list-subscriber">List Subscriber</label>
-					<label class="radio"><input type="radio" name="objecttype" value="subscriber">Subscriber</label>
-					<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" id="rdoTriggeredsend">Triggered Send</label>
-					<label class="radio"><input type="radio" name="objecttype" value="bounceevent">Bounce Event</label>
-					<label class="radio"><input type="radio" name="objecttype" value="clickevent">Click Event</label>
-					<label class="radio"><input type="radio" name="objecttype" value="openevent">Open Event</label>
-					<label class="radio"><input type="radio" name="objecttype" value="sentevent">Sent Event</label>
-					<label class="radio"><input type="radio" name="objecttype" value="unsubevent">Unsub Event</label>
-				</div>
-		
-				<button type="button" class="btn btn-default" id="bTest">Test</button>	
-			</div>
+			
 			<div class="span8">
+				<div class="well">
+					<p>You can access the SOAP and REST node libraries directly from the SDK.  This may be necessary if the object you need is not listed below.</p>
+					<button type="button" class="btn btn-default" id="bTestRest">Test REST</button>
+					<button type="button" class="btn btn-default" id="bTestSoap" style="margin-left:10px;">Test SOAP</button>
+				</div>
+				<p/>
+				<p>Choose a method and an object, then click Test.</p>
+				<h4>Methods</h4>
+				<div class="controls" id="dataTypeGroup">						
+					<label class="radio inline" style="margin-top:-5px;"><input type="radio" name="datatype" value="post">Create</label>
+					<label class="radio inline"><input type="radio" name="datatype" value="get">Retrieve</label>
+					<label class="radio inline"><input type="radio" name="datatype" value="patch">Update</label>
+					<label class="radio inline"><input type="radio" name="datatype" value="delete">Delete</label>
+					<label class="radio inline" style="color:#ccc"><input type="radio" name="datatype" value="send" disabled="disabled">Send</label>			
+				</div>
+				<hr class="divider" style="margin:15px 0 5px;"/>
+				<h4>Objects</h4>
+				<p>These are the Marketing Cloud objects supported by fuelsdk-node.</p>
+				<div class="control-group" id="objectTypeGroup">
+					<div class="span12">
+						<div class="span3">
+							<label class="radio"><input type="radio" name="objecttype" value="campaign"/>Campaign</label>
+							<label class="radio"><input type="radio" name="objecttype" value="campaign-asset"/>Campaign Asset</label>
+							<label class="radio"><input type="radio" name="objecttype" value="contentarea"/>Content Area</label>
+							<label class="radio"><input type="radio" name="objecttype" value="de"/>Data Extension</label>
+							<label class="radio"><input type="radio" name="objecttype" value="de-column"/>Data Extension Column</label>
+							<label class="radio"><input type="radio" name="objecttype" value="de-row"/>Data Extension Row</label>
+							<label class="radio"><input type="radio" name="objecttype" value="email"/>Email</label>
+							<label class="radio"><input type="radio" name="objecttype" value="folder"/>Folder</label>
+						</div>
+						<div class="span2">
+							<label class="radio"><input type="radio" name="objecttype" value="list"/>List</label>
+							<label class="radio"><input type="radio" name="objecttype" value="list-subscriber"/>List Subscriber</label>
+							<label class="radio"><input type="radio" name="objecttype" value="subscriber"/>Subscriber</label>
+							<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" id="rdoTriggeredsend"/>Triggered Send</label>
+							<label class="radio"><input type="radio" name="objecttype" value="bounceevent"/>Bounce Event</label>
+							<label class="radio"><input type="radio" name="objecttype" value="clickevent"/>Click Event</label>
+							<label class="radio"><input type="radio" name="objecttype" value="openevent"/>Open Event</label>
+							<label class="radio"><input type="radio" name="objecttype" value="sentevent"/>Sent Event</label>
+							<label class="radio"><input type="radio" name="objecttype" value="unsubevent"/>Unsub Event</label>
+						</div>
+						<div class="span1">
+							<button type="button" class="btn btn-default" id="bTest">Test</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="span4">
 				<div class="control-group">
 					<label class="control-label" for="dataBody">Result</label>
 					<div class="controls">
-						<textarea name="dataBody" id="dataResults" rows="15" style="width:850px;"></textarea>
+						<textarea name="dataBody" id="dataResults" rows="25" style="width:600px;"></textarea>
 					</div>
 				</div>
 			</div>
