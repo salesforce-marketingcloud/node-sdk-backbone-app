@@ -1,8 +1,15 @@
 # node-sdk-backbone-app
 
-![alt tag](sdk-backbone-app.png)
+![alt tag](screenshot.png)
 
 ## $ node index
+
+ATTENTION: The default mode of this app returns code examples to the UI if no credentials are supplied.
+If you run this app with credentials, do not deploy it to a public URL unless the app is password protected.
+
+
+
+## To run localhost:
 
 Either specify your clientId, clientSecret and stack in the code or in a config var/command line:
 
