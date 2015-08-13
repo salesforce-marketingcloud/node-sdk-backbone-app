@@ -3,13 +3,9 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
-
-
-
-// setting up routes
-restRouter.get( '/test-folder-post', function( req, res ) {
-	
+function postFolder ( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "SDK Folder", "Name" : "SDK Folder", "Description" : "SDK Example Folder", "ContentType": "EMAIL", "ParentFolder" : {"ID" : "1705"}, "AllowChildren" : "true", "IsEditable" : "true" }
 	};			
@@ -25,11 +21,9 @@ restRouter.get( '/test-folder-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-folder-get', function( req, res ) {
-
+function getFolder ( req, res ) {
 	var options = {
 		props: ["ParentFolder.ID", "ID", "Name"]  //required
 		/*
@@ -50,11 +44,10 @@ restRouter.get( '/test-folder-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});	
+};
 
-restRouter.get( '/test-folder-patch', function( req, res ) {
+function patchFolder ( req, res ) {
 	var options = {
 		props: {"ID": "56337", "Name" : "SDK Example, now Updated!"}
 	};	
@@ -69,9 +62,9 @@ restRouter.get( '/test-folder-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-folder-delete', function( req, res ) {
+function deleteFolder ( req, res ) {
 	var options = {
 		props: {"ID": "56337"}  //required
 	};	
@@ -86,9 +79,24 @@ restRouter.get( '/test-folder-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-folder-post', function( req, res ) {
+	helpers.sendCodeOrData(postFolder, req, res);
 });
 
+restRouter.get( '/test-folder-get', function( req, res ) {	
+	helpers.sendCodeOrData(getFolder, req, res);
+});	
 
+restRouter.get( '/test-folder-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchFolder, req, res);
+});
+
+restRouter.get( '/test-folder-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteFolder, req, res);
+});
 
 
 // exporting the router

@@ -12,6 +12,7 @@ var listRoutes = require( './list-routes' );
 var subscriberRoutes = require( './subscriber-routes' );
 var triggeredSendRoutes = require( './triggeredSend-routes' );
 var trackingRoutes = require( './tracking-routes' );
+var smsRoutes = require( './sms-routes' );
 
 
 module.exports = {
@@ -27,4 +28,5 @@ module.exports = {
 	,subscriber: subscriberRoutes
 	,triggeredSend: triggeredSendRoutes
 	,tracking: trackingRoutes
+	,sms: smsRoutes
 };

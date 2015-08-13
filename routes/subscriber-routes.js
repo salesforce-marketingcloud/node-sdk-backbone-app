@@ -3,13 +3,9 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
-
-
-
-// setting up routes
-restRouter.get( '/test-subscriber-post', function( req, res ) {
-	
+function postSubscriber ( req, res ) {
 	var options = {
 		props: {"EmailAddress" : "newexample@bh.exacttarget.com"
 				,"SubscriberKey" : "SDKSubscriber2"
@@ -29,11 +25,9 @@ restRouter.get( '/test-subscriber-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-subscriber-get', function( req, res ) {
-
+function getSubscriber ( req, res ) {
 	var options = {
 		props: ["EmailAddress","SubscriberKey"]  //required
 		/*
@@ -54,11 +48,10 @@ restRouter.get( '/test-subscriber-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});
+};
 
-restRouter.get( '/test-subscriber-patch', function( req, res ) {
+function patchSubscriber ( req, res ) {
 	var options = {
 		props: {"Status" : "Unsubscribed", "SubscriberKey" : "SDKSubscriber"}
 	};	
@@ -73,9 +66,9 @@ restRouter.get( '/test-subscriber-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-subscriber-delete', function( req, res ) {
+function deleteSubscriber ( req, res ) {
 	var options = {
 		props: {"SubscriberKey" : "SDKSubscriber"}  //required
 	};	
@@ -90,6 +83,23 @@ restRouter.get( '/test-subscriber-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-subscriber-post', function( req, res ) {
+	helpers.sendCodeOrData(postSubscriber, req, res);
+});
+
+restRouter.get( '/test-subscriber-get', function( req, res ) {	
+	helpers.sendCodeOrData(getSubscriber, req, res);
+});	
+
+restRouter.get( '/test-subscriber-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchSubscriber, req, res);
+});
+
+restRouter.get( '/test-subscriber-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteSubscriber, req, res);
 });
 
 

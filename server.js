@@ -113,6 +113,7 @@ app.use( '/', routes.list );
 app.use( '/', routes.subscriber );
 app.use( '/', routes.triggeredSend );
 app.use( '/', routes.tracking );
+app.use( '/', routes.sms );
 
 
 function start() {

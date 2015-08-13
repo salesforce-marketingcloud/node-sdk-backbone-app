@@ -3,13 +3,9 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
-
-
-
-// setting up routes
-restRouter.get( '/test-de-post', function( req, res ) {
-	
+function postDE ( req, res ) {
 	var options = {
 		props: {"Name" : "SDKDataExtension", "Description": "SDK Created Data Extension"}
 		,columns: [	{"Name" : "Key", "FieldType" : "Text", "IsPrimaryKey" : "true", "MaxLength" : "100", "IsRequired" : "true"}
@@ -28,11 +24,9 @@ restRouter.get( '/test-de-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-de-get', function( req, res ) {
-
+function getDE ( req, res ) {
 	var options = {
 		props: ['Name', 'CustomerKey']  //required
 		,filter: {						//remove filter for all.
@@ -51,11 +45,10 @@ restRouter.get( '/test-de-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});
+};
 
-restRouter.get( '/test-de-patch', function( req, res ) {
+function patchDE ( req, res ) {
 	var options = {
 		props: {'CustomerKey' : '7DEC95AA-562D-4915-92D9-509F37F27E4C', Name: 'SDKDataExtensionUpdated'}  //required
 	};	
@@ -70,9 +63,9 @@ restRouter.get( '/test-de-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-de-delete', function( req, res ) {
+function deleteDE ( req, res ) {
 	var options = {
 		props: {'CustomerKey' : '7DEC95AA-562D-4915-92D9-509F37F27E4C'}  //required
 	};	
@@ -87,21 +80,34 @@ restRouter.get( '/test-de-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-de-post', function( req, res ) {
+	helpers.sendCodeOrData(postDE, req, res);
 });
+
+restRouter.get( '/test-de-get', function( req, res ) {	
+	helpers.sendCodeOrData(getDE, req, res);
+});	
+
+restRouter.get( '/test-de-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchDE, req, res);
+});
+
+restRouter.get( '/test-de-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteDE, req, res);
+});
+
+
 
 
 //****************************************************************************************
 //								Column
 //****************************************************************************************
 
-restRouter.get( '/test-de-column-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-de-column-get', function( req, res ) {
-
+function getDEColumn ( req, res ) {
 	var options = {
 		props: ['ObjectID','PartnerKey','Name','DefaultValue','MaxLength','IsRequired','Ordinal','IsPrimaryKey','FieldType','CreatedDate','ModifiedDate','Scale','Client.ID','CustomerKey']  //required	
 		///*
@@ -122,9 +128,18 @@ restRouter.get( '/test-de-column-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});	
+};
+
+
+
+restRouter.get( '/test-de-column-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
 });
+
+restRouter.get( '/test-de-column-get', function( req, res ) {	
+	helpers.sendCodeOrData(getDEColumn, req, res);
+});	
 
 restRouter.get( '/test-de-column-patch', function( req, res ) {
 	res.status(500).send( {error: 'Update is not available for this object.'} );
@@ -135,12 +150,13 @@ restRouter.get( '/test-de-column-delete', function( req, res ) {
 });
 
 
+
+
 //****************************************************************************************
 //								Row
 //****************************************************************************************
 
-restRouter.get( '/test-de-row-post', function( req, res ) {
-	
+function postDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
 		,props: {"Key" : "ThisIsTheKey", "Value" : "Some random text for the value field"}	
@@ -157,11 +173,9 @@ restRouter.get( '/test-de-row-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-de-row-get', function( req, res ) {
-
+function getDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"	//required
 		,props: ['Key', 'Value'] 	//required
@@ -183,12 +197,10 @@ restRouter.get( '/test-de-row-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});
+};
 
-restRouter.get( '/test-de-row-patch', function( req, res ) {
-
+function patchDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
 		,props: {"Key" : "ThisIsTheKey", "Value" : "NewValue"}	
@@ -204,10 +216,9 @@ restRouter.get( '/test-de-row-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-de-row-delete', function( req, res ) {
-
+function deleteDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
 		,props: {"Key" : "ThisIsTheKey"}	
@@ -223,8 +234,24 @@ restRouter.get( '/test-de-row-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-de-row-post', function( req, res ) {
+	helpers.sendCodeOrData(postDERow, req, res);
 });
 
+restRouter.get( '/test-de-row-get', function( req, res ) {	
+	helpers.sendCodeOrData(getDERow, req, res);
+});	
+
+restRouter.get( '/test-de-row-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchDERow, req, res);
+});
+
+restRouter.get( '/test-de-row-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteDERow, req, res);
+});
 
 
 // exporting the router

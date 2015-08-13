@@ -106,9 +106,15 @@ define(function(require) {
 				
 			})
 			.done(function(data) {
+				console.log('done');
 				$('#dataResults').val(JSON.stringify(data, null, '\t'));
+				//$('#dataResults').val(data.responseText);
+				
+				//$('#dataResults').html(data);
 			}).fail(function(data) {
-				$('#dataResults').val(JSON.stringify(data, null, '\t'));
+				console.log('fail');
+				//$('#dataResults').val(JSON.stringify(data, null, '\t'));
+				$('#dataResults').val(data.responseText);
 			});        
         },       
         onBtnTestRestClick: function() {
@@ -121,20 +127,37 @@ define(function(require) {
         },
         onBtnTestClick: function() {
         	$('#dataResults').val('');
-        	var datatype = $('#dataTypeGroup input:radio:checked').val();
+        	var datatype = $('#dataTypeGroup input:radio:checked').val();        	
         	var objtype = $('#objectTypeGroup input:radio:checked').val();
+        	if (!datatype) alert('Please select a method (ie. Create, Retrieve...)');
+        	if (!objtype) alert('Please select an object.');
         	this.testGet('test-'+objtype+'-'+datatype);
         },
         onObjectTypeGroupClick: function() {
-        	var result = $('#objectTypeGroup input:radio:checked').val();
-        	var disabled = (result !== 'triggeredsend');
-        	var color = disabled ? '#ccc' : '#000';
-        	var $input = $('#dataTypeGroup :input:radio[value="send"]');
-        	$input.attr('disabled',disabled);
-        	$input.parent().css("color", color);
-        	$input.prop('checked', false);
-        }           
-    });
-
+        	var objName = $('#objectTypeGroup input:radio:checked').val();        	
+        	if (objName === 'triggeredsend') {
+        		this.enableOperation('send',true);
+        	} else if (objName === 'sms') {        		
+        		this.enableOperation('post',false);
+        		this.enableOperation('get',false);
+        		this.enableOperation('patch',false);
+        		this.enableOperation('delete',false);
+        		this.enableOperation('send',true);
+        	} else {
+        		this.enableOperation('post',true);
+        		this.enableOperation('get',true);
+        		this.enableOperation('patch',true);
+        		this.enableOperation('delete',true);        	
+        		this.enableOperation('send',false);
+        	} 	
+        },
+        enableOperation: function(name,val) {
+        	var $rdo = $('#dataTypeGroup :input:radio[value="'+name+'"]');
+        	$rdo.attr('disabled',!val);
+        	var color = !val ? '#ccc' : '#000';
+        	$rdo.parent().css("color", color);
+        	//$rdo.prop('checked', false);
+        }
+	});
 });
 

@@ -6,9 +6,18 @@ var ET_Client = require( '../lib/IET_Client' );
 var helpers = require( '../lib/helpers' );
 
 
-function testRest ( req, res ) {
+function SMSSend ( req, res ) {
+	var msg = {
+		"mobileNumbers" : [ "15558880306" ],
+		"shortCode" : "86288",
+		"messageText" : "CODETEST"
+	};	
+	
 	ET_Client.RestClient
-		.get('/platform/v1/endpoints')
+		.post({
+			uri:'/sms/v1/queueMO'
+			,body: JSON.stringify(msg)
+		})
 		.then(function(response) {
 			response && res.status(response.res.statusCode).send( response.body );
 		}.bind(this))
@@ -17,9 +26,10 @@ function testRest ( req, res ) {
 		}.bind(this));
 };
 
-restRouter.get( '/test-rest', function( req, res ) {
-	helpers.sendCodeOrData(testRest, req, res);
+restRouter.get( '/test-sms-send', function( req, res ) {
+	helpers.sendCodeOrData(SMSSend, req, res);
 });
+
 
 
 // exporting the router

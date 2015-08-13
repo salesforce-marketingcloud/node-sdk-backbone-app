@@ -3,13 +3,10 @@
 var express     = require( 'express' );
 var soapRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
 
-
-
-// setting up routes
-soapRouter.get( '/test-soap', function( req, res ) {
-	
+function testSoap ( req, res ) {
 	var options = {
 		filter: {
 			leftOperand: 'Name',
@@ -32,10 +29,10 @@ soapRouter.get( '/test-soap', function( req, res ) {
 			}
 		}
 	);	
-	
-	
-	
-	
+};
+
+soapRouter.get( '/test-soap', function( req, res ) {
+	helpers.sendCodeOrData(testSoap, req, res);
 });
 
 

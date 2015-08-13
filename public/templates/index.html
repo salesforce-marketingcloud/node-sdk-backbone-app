@@ -14,6 +14,14 @@
 		<p/>
 		<p>Note: Some tests may need to be modified (in the code) to work with your particular MC account data.</p>			
 	</div>
+	<div class="alert">
+		<p>
+		The default mode of this app returns code examples to the UI if no credentials are supplied.
+		</p>
+		<p>
+		If you run this app with credentials, do not deploy it to a public URL unless the app is password protected.
+		</p>	
+	</div>
 	<div class="well">
 		<div class="row" style="margin-left:0px;">
 			
@@ -47,9 +55,9 @@
 							<label class="radio"><input type="radio" name="objecttype" value="de-row"/>Data Extension Row</label>
 							<label class="radio"><input type="radio" name="objecttype" value="email"/>Email</label>
 							<label class="radio"><input type="radio" name="objecttype" value="folder"/>Folder</label>
-						</div>
-						<div class="span2">
 							<label class="radio"><input type="radio" name="objecttype" value="list"/>List</label>
+						</div>
+						<div class="span2">							
 							<label class="radio"><input type="radio" name="objecttype" value="list-subscriber"/>List Subscriber</label>
 							<label class="radio"><input type="radio" name="objecttype" value="subscriber"/>Subscriber</label>
 							<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" id="rdoTriggeredsend"/>Triggered Send</label>
@@ -58,6 +66,7 @@
 							<label class="radio"><input type="radio" name="objecttype" value="openevent"/>Open Event</label>
 							<label class="radio"><input type="radio" name="objecttype" value="sentevent"/>Sent Event</label>
 							<label class="radio"><input type="radio" name="objecttype" value="unsubevent"/>Unsub Event</label>
+							<label class="radio"><input type="radio" name="objecttype" value="sms"/>SMS</label>
 						</div>
 						<div class="span1">
 							<button type="button" class="btn btn-default" id="bTest">Test</button>
@@ -70,7 +79,7 @@
 				<div class="control-group">
 					<label class="control-label" for="dataBody">Result</label>
 					<div class="controls">
-						<textarea name="dataBody" id="dataResults" rows="25" style="width:600px;"></textarea>
+						<textarea name="dataBody" id="dataResults" rows="25" style="width:600px;" wrap="off"></textarea>
 					</div>
 				</div>
 			</div>

@@ -3,11 +3,9 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
-
-// setting up routes
-restRouter.get( '/test-triggeredsend-post', function( req, res ) {
-	
+function postTriggeredSend ( req, res ) {
 	var options = {
 		props: {"Name" : "SDKTriggeredSend"
 				,"Description" : "SDK Created TriggeredSend"
@@ -27,11 +25,9 @@ restRouter.get( '/test-triggeredsend-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-triggeredsend-get', function( req, res ) {
-
+function getTriggeredSend ( req, res ) {
 	var options = {
 		props: ["Name"
 				,"CustomerKey"
@@ -58,11 +54,10 @@ restRouter.get( '/test-triggeredsend-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});
+};
 
-restRouter.get( '/test-triggeredsend-patch', function( req, res ) {
+function patchTriggeredSend ( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "1859"
 				, "Name" : "SDK Example, now Updated!"
@@ -79,9 +74,9 @@ restRouter.get( '/test-triggeredsend-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-triggeredsend-delete', function( req, res ) {
+function deleteTriggeredSend ( req, res ) {
 	var options = {
 		props: {"CustomerKey" : "1859"}  //required
 	};	
@@ -96,9 +91,9 @@ restRouter.get( '/test-triggeredsend-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-triggeredsend-send', function( req, res ) {
+function sendTriggeredSend ( req, res ) {
 	var options = {
 			
 			props: {
@@ -123,6 +118,27 @@ restRouter.get( '/test-triggeredsend-send', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-triggeredsend-post', function( req, res ) {
+	helpers.sendCodeOrData(postTriggeredSend, req, res);
+});
+
+restRouter.get( '/test-triggeredsend-get', function( req, res ) {	
+	helpers.sendCodeOrData(getTriggeredSend, req, res);
+});	
+
+restRouter.get( '/test-triggeredsend-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchTriggeredSend, req, res);
+});
+
+restRouter.get( '/test-triggeredsend-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteTriggeredSend, req, res);
+});
+
+restRouter.get( '/test-triggeredsend-send', function( req, res ) {
+	helpers.sendCodeOrData(sendTriggeredSend, req, res);
 });
 
 

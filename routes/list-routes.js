@@ -3,13 +3,9 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
-
-
-
-// setting up routes
-restRouter.get( '/test-list-post', function( req, res ) {
-	
+function postList ( req, res ) {
 	var options = {
 		props: {"ListName" : "SDKList", "Description" : "SDK Created List"}
 	};			
@@ -25,11 +21,9 @@ restRouter.get( '/test-list-post', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-	
-});
+};
 
-restRouter.get( '/test-list-get', function( req, res ) {
-
+function getList ( req, res ) {
 	var options = {
 		props: ["ListName", "CustomerKey", "ID"]  //required
 		/*
@@ -50,11 +44,10 @@ restRouter.get( '/test-list-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
-});
+	});
+};
 
-restRouter.get( '/test-list-patch', function( req, res ) {
+function patchList ( req, res ) {
 	var options = {
 		props: {"ID": "6284", "ListName" : "SDK Example, now Updated!"}
 	};	
@@ -69,9 +62,9 @@ restRouter.get( '/test-list-patch', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
-});
+};
 
-restRouter.get( '/test-list-delete', function( req, res ) {
+function deleteList ( req, res ) {
 	var options = {
 		props: {"ID": "6284"}  //required
 	};	
@@ -86,20 +79,33 @@ restRouter.get( '/test-list-delete', function( req, res ) {
 			response && res.status(statusCode).send( result );
 		}
 	});
+};
+
+
+restRouter.get( '/test-list-post', function( req, res ) {
+	helpers.sendCodeOrData(postList, req, res);
 });
+
+restRouter.get( '/test-list-get', function( req, res ) {	
+	helpers.sendCodeOrData(getList, req, res);
+});	
+
+restRouter.get( '/test-list-patch', function( req, res ) {
+	helpers.sendCodeOrData(patchList, req, res);
+});
+
+restRouter.get( '/test-list-delete', function( req, res ) {
+	helpers.sendCodeOrData(deleteList, req, res);
+});
+
+
 
 //****************************************************************************************
 //								List Subscriber
 //****************************************************************************************
 
-restRouter.get( '/test-list-subscriber-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-list-subscriber-get', function( req, res ) {
-
+function getListSubscriber ( req, res ) {
 	var options = {
 		props: ["ListID", "SubscriberKey"]  //required
 		/*
@@ -120,9 +126,17 @@ restRouter.get( '/test-list-subscriber-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});
+};
+
+
+restRouter.get( '/test-list-subscriber-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
 });
+
+restRouter.get( '/test-list-subscriber-get', function( req, res ) {	
+	helpers.sendCodeOrData(getListSubscriber, req, res);
+});	
 
 restRouter.get( '/test-list-subscriber-patch', function( req, res ) {
 	res.status(500).send( {error: 'Update is not available for this object.'} );

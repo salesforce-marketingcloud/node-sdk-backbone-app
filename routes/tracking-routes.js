@@ -3,19 +3,15 @@
 var express     = require( 'express' );
 var restRouter = express.Router();
 var ET_Client = require( '../lib/IET_Client' );
+var helpers = require( '../lib/helpers' );
 
 
 //****************************************************************************************
 //								Bounce Event
 //****************************************************************************************
-restRouter.get( '/test-bounceevent-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-bounceevent-get', function( req, res ) {
 
+function getBounceEvent ( req, res ) {
 	var options = {
 		props: ["SendID", "EventDate", "SubscriberKey"]  //required
 		/*
@@ -36,9 +32,17 @@ restRouter.get( '/test-bounceevent-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});	
+};
+
+
+restRouter.get( '/test-bounceevent-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
 });
+
+restRouter.get( '/test-bounceevent-get', function( req, res ) {	
+	helpers.sendCodeOrData(getBounceEvent, req, res);
+});	
 
 restRouter.get( '/test-bounceevent-patch', function( req, res ) {
 	res.status(500).send( {error: 'Update is not available for this object.'} );
@@ -49,17 +53,15 @@ restRouter.get( '/test-bounceevent-delete', function( req, res ) {
 });
 
 
+
+
+
+
 //****************************************************************************************
 //								Click Event
 //****************************************************************************************
-restRouter.get( '/test-clickevent-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-clickevent-get', function( req, res ) {
-
+function getClickEvent ( req, res ) {
 	var options = {
 		props: ["SendID", "EventDate", "SubscriberKey"]  //required
 		/*
@@ -80,9 +82,18 @@ restRouter.get( '/test-clickevent-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});	
+};
+
+
+
+restRouter.get( '/test-clickevent-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
 });
+
+restRouter.get( '/test-clickevent-get', function( req, res ) {	
+	helpers.sendCodeOrData(getClickEvent, req, res);
+});	
 
 restRouter.get( '/test-clickevent-patch', function( req, res ) {
 	res.status(500).send( {error: 'Update is not available for this object.'} );
@@ -93,17 +104,13 @@ restRouter.get( '/test-clickevent-delete', function( req, res ) {
 });
 
 
+
+
 //****************************************************************************************
 //								Open Event
 //****************************************************************************************
-restRouter.get( '/test-openevent-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-openevent-get', function( req, res ) {
-
+function getOpenEvent ( req, res ) {
 	var options = {
 		props: ["SendID", "EventDate", "SubscriberKey"]  //required
 		/*
@@ -124,8 +131,16 @@ restRouter.get( '/test-openevent-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});	
+};
+
+
+restRouter.get( '/test-openevent-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
+});
+
+restRouter.get( '/test-openevent-get', function( req, res ) {
+	helpers.sendCodeOrData(getOpenEvent, req, res);
 });
 
 restRouter.get( '/test-openevent-patch', function( req, res ) {
@@ -140,14 +155,8 @@ restRouter.get( '/test-openevent-delete', function( req, res ) {
 //****************************************************************************************
 //								Sent Event
 //****************************************************************************************
-restRouter.get( '/test-sentevent-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-sentevent-get', function( req, res ) {
-
+function getSentEvent ( req, res ) {
 	var options = {
 		props: ["SendID", "EventDate", "SubscriberKey"]  //required
 		/*
@@ -168,8 +177,16 @@ restRouter.get( '/test-sentevent-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});	
+};
+
+
+restRouter.get( '/test-sentevent-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
+});
+
+restRouter.get( '/test-sentevent-get', function( req, res ) {
+	helpers.sendCodeOrData(getSentEvent, req, res);
 });
 
 restRouter.get( '/test-sentevent-patch', function( req, res ) {
@@ -184,14 +201,8 @@ restRouter.get( '/test-sentevent-delete', function( req, res ) {
 //****************************************************************************************
 //								Unsub Event
 //****************************************************************************************
-restRouter.get( '/test-unsubevent-post', function( req, res ) {
-	
-	res.status(500).send( {error: 'Create is not available for this object.'} );
-	
-});
 
-restRouter.get( '/test-unsubevent-get', function( req, res ) {
-
+function getUnsubEvent ( req, res ) {
 	var options = {
 		props: ["SendID", "EventDate", "SubscriberKey"]  //required
 		/*
@@ -212,8 +223,16 @@ restRouter.get( '/test-unsubevent-get', function( req, res ) {
 			var result = response && response.body ? response.body : response;
 			response && res.status(statusCode).send( result );
 		}
-	});		
-	
+	});
+};
+
+
+restRouter.get( '/test-unsubevent-post', function( req, res ) {
+	res.status(500).send( {error: 'Create is not available for this object.'} );
+});
+
+restRouter.get( '/test-unsubevent-get', function( req, res ) {
+	helpers.sendCodeOrData(getUnsubEvent, req, res);
 });
 
 restRouter.get( '/test-unsubevent-patch', function( req, res ) {
