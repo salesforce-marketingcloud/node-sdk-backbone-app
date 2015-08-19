@@ -8,83 +8,122 @@
 
 
 	<div class="well" id="headerPane" style="background-color:#fff">
-		<img src="./img/sflogo.png" style="float:left;"/>
-		<h2>Salesforce Marketing Cloud Heroku Button App</h2>
-		<p>Welcome to your new Marketing Cloud-enabled grunt/bootstrap/fuelux/handlebars/backbone/express4/node/heroku app.  This application demonstrates the fuel node SDK, allowing access to node-specific Marketing Cloud objects.</p>
-		<p/>
-		<p/>
-		<p>Note: Some tests may need to be modified (in the code) to work with your particular MC account data.</p>			
+		<img src="./img/sfdc-logo-sm.png" style="width:200px;margin:0px auto;display:block;"/>
+		<h2 style="text-align:center;">Demo App for Node.js SDK</h2>
+		<p style="text-align:center;">This application demonstrates the Salesforce Marketing Cloud's Fuel Node.js SDK, providing access to a variety of Salesforce Marketing Cloud objects.</p>	
 	</div>
 	<div class="alert">
 		<p>
-		ATTENTION: The default mode of this app returns code examples to the UI if no credentials are supplied.
-		</p>
-		<p>
-		If you run this app with credentials, <strong>do not</strong> deploy it to a public URL unless the app is password protected.
+		ATTENTION: The default mode of this app returns code examples to the UI if no credentials are supplied.  If you run this app with credentials, <strong>do not</strong> deploy it to a public URL unless the app is password protected.
 		</p>	
 	</div>
 	<div class="well">
 		<div class="row" style="margin-left:0px;">
 			
-			<div class="span8">
-				<div class="well">
-					<p>You can access the SOAP and REST node libraries directly from the SDK.  This may be necessary if the object you need is not listed below.</p>
-					<button type="button" class="btn btn-default" id="bTestRest">Test REST</button>
-					<button type="button" class="btn btn-default" id="bTestSoap" style="margin-left:10px;">Test SOAP</button>
+			<div class="col-md-6">
+				<div class="well api">
+					<div>
+						<h4><strong>Objects</strong></h4>
+						<p>Choose a Salesforce Marketing Cloud object.</p>
+						<div class="control-group" id="objectTypeGroup">
+							<table>
+								<tr>
+									<td style="padding-right:30px;">
+										<label class="radio"><input type="radio" name="objecttype" value="campaign" data-method="crud"/>Campaign</label>
+										<label class="radio"><input type="radio" name="objecttype" value="campaign-asset" data-method="crd"/>Campaign Asset</label>
+										<label class="radio"><input type="radio" name="objecttype" value="contentarea" data-method="crud"/>Content Area</label>
+										<label class="radio"><input type="radio" name="objecttype" value="de" data-method="crud"/>Data Extension</label>
+										<label class="radio"><input type="radio" name="objecttype" value="de-column" data-method="r"/>Data Extension Column</label>
+										<label class="radio"><input type="radio" name="objecttype" value="de-row" data-method="crud"/>Data Extension Row</label>
+										<label class="radio"><input type="radio" name="objecttype" value="email" data-method="crud" data-method="crud"/>Email</label>
+										<label class="radio"><input type="radio" name="objecttype" value="folder" data-method="crud"/>Folder</label>
+										<label class="radio"><input type="radio" name="objecttype" value="list" data-method="crud"/>List</label>
+									</td>
+									<td>							
+										<label class="radio"><input type="radio" name="objecttype" value="list-subscriber" data-method="r"/>List Subscriber</label>
+										<label class="radio"><input type="radio" name="objecttype" value="subscriber" data-method="crud"/>Subscriber</label>
+										<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" data-method="cruds"/>Triggered Send</label>
+										<label class="radio"><input type="radio" name="objecttype" value="bounceevent" data-method="r"/>Bounce Event</label>
+										<label class="radio"><input type="radio" name="objecttype" value="clickevent" data-method="r"/>Click Event</label>
+										<label class="radio"><input type="radio" name="objecttype" value="openevent" data-method="r"/>Open Event</label>
+										<label class="radio"><input type="radio" name="objecttype" value="sentevent" data-method="r"/>Sent Event</label>
+										<label class="radio"><input type="radio" name="objecttype" value="unsubevent" data-method="r"/>Unsub Event</label>
+										<label class="radio"><input type="radio" name="objecttype" value="sms" data-method="s"/>SMS</label>
+									</td>
+								</tr>	
+							</table>
+						</div>	
+					</div>	
+					<div>			
+						<h4 style="padding-top:20px;"><strong>Methods</strong></h4>
+						<p>Choose the function to perform on the object.</p>
+						<div style="width:400px;margin:0px auto;display:block;" class="controls" id="dataTypeGroup">						
+							<label class="radio inline" style="margin-top:-5px;"><input type="radio" name="datatype" value="post">Create</label>
+							<label class="radio inline"><input type="radio" name="datatype" value="get">Retrieve</label>
+							<label class="radio inline"><input type="radio" name="datatype" value="patch">Update</label>
+							<label class="radio inline"><input type="radio" name="datatype" value="delete">Delete</label>
+							<label class="radio inline"><input type="radio" name="datatype" value="send">Send</label>			
+						</div>	
+					</div>	
+					<p/>									
+					<p style="padding-top:10px;">NOTE: Some tests may need to be modified (in the code) to work with your particular MC account data.</p>
+					<div style="padding-top:10px;width:100px;margin:0px auto;display:block;">
+						<button type="button" class="btn btn-default" id="bTest">Test</button>
+					</div>					
 				</div>
-				<p/>
-				<p>Choose a method and an object, then click Test.</p>
-				<h4>Methods</h4>
-				<div class="controls" id="dataTypeGroup">						
-					<label class="radio inline" style="margin-top:-5px;"><input type="radio" name="datatype" value="post">Create</label>
-					<label class="radio inline"><input type="radio" name="datatype" value="get">Retrieve</label>
-					<label class="radio inline"><input type="radio" name="datatype" value="patch">Update</label>
-					<label class="radio inline"><input type="radio" name="datatype" value="delete">Delete</label>
-					<label class="radio inline" style="color:#ccc"><input type="radio" name="datatype" value="send" disabled="disabled">Send</label>			
+				
+				
+				<div class="well api">
+					<h4><strong>API Connections</strong></h4>
+					<p>You can access the SOAP and REST node libraries directly from the SDK.</p>
+					<p>NOTE: These may be needed if the object you need is not included in the SDK.</p>
+					<div style="width:200px;margin:0px auto;display:block;" class="controls" id="soaprestGroup">						
+						<label style="margin:0px;" class="radio inline"><input type="radio" name="apitype" value="soap">SOAP</label>
+						<label style="padding-top:10px;" class="radio inline"><input type="radio" name="apitype" value="rest">REST</label>						
+					</div>	
+					<div style="padding-top:10px;width:100px;margin:0px auto;display:block;">
+						<button type="button" class="btn btn-default" id="bTestSoapRest">Test</button>
+					</div>										
 				</div>
-				<hr class="divider" style="margin:15px 0 5px;"/>
-				<h4>Objects</h4>
-				<p>These are the Marketing Cloud objects supported by fuelsdk-node.</p>
-				<div class="control-group" id="objectTypeGroup">
-					<div class="span12">
-						<div class="span3">
-							<label class="radio"><input type="radio" name="objecttype" value="campaign"/>Campaign</label>
-							<label class="radio"><input type="radio" name="objecttype" value="campaign-asset"/>Campaign Asset</label>
-							<label class="radio"><input type="radio" name="objecttype" value="contentarea"/>Content Area</label>
-							<label class="radio"><input type="radio" name="objecttype" value="de"/>Data Extension</label>
-							<label class="radio"><input type="radio" name="objecttype" value="de-column"/>Data Extension Column</label>
-							<label class="radio"><input type="radio" name="objecttype" value="de-row"/>Data Extension Row</label>
-							<label class="radio"><input type="radio" name="objecttype" value="email"/>Email</label>
-							<label class="radio"><input type="radio" name="objecttype" value="folder"/>Folder</label>
-							<label class="radio"><input type="radio" name="objecttype" value="list"/>List</label>
-						</div>
-						<div class="span2">							
-							<label class="radio"><input type="radio" name="objecttype" value="list-subscriber"/>List Subscriber</label>
-							<label class="radio"><input type="radio" name="objecttype" value="subscriber"/>Subscriber</label>
-							<label class="radio"><input type="radio" name="objecttype" value="triggeredsend" id="rdoTriggeredsend"/>Triggered Send</label>
-							<label class="radio"><input type="radio" name="objecttype" value="bounceevent"/>Bounce Event</label>
-							<label class="radio"><input type="radio" name="objecttype" value="clickevent"/>Click Event</label>
-							<label class="radio"><input type="radio" name="objecttype" value="openevent"/>Open Event</label>
-							<label class="radio"><input type="radio" name="objecttype" value="sentevent"/>Sent Event</label>
-							<label class="radio"><input type="radio" name="objecttype" value="unsubevent"/>Unsub Event</label>
-							<label class="radio"><input type="radio" name="objecttype" value="sms"/>SMS</label>
-						</div>
-						<div class="span1">
-							<button type="button" class="btn btn-default" id="bTest">Test</button>
-						</div>
-					</div>
-				</div>
-
 			</div>
-			<div class="span4">
-				<div class="control-group">
+			<div class="col-md-6" id="resultArea">
+				<div class="control-group" style="height:inherit;">
 					<label class="control-label" for="dataBody">Result</label>
-					<div class="controls">
-						<textarea name="dataBody" id="dataResults" rows="25" style="width:600px;" wrap="off"></textarea>
+					<div class="controls" style="height:inherit;">
+						<textarea name="dataBody" id="dataResults" rows="25" style="height:inherit;width:100%;" wrap="off"></textarea>
 					</div>
 				</div>
 			</div>
+							
+			
 		</div>
+
+		<div class="well" style="margin-left:20px;">
+			<h4><strong>Additional Resources</strong></h4>
+			<table>
+				<tr>
+					<td style="width:200px;">
+						<a href="https://appcenter-auth.exacttargetapps.com/">code@ | AppCenter</a>
+					</td>
+					<td>						
+						<a href="https://github.com/salesforcefuel/FuelSDK-Node-REST">Node SDK Github Repo</a>
+					</td>					
+				</tr>
+				<tr>
+					<td>
+						<a href="https://code.exacttarget.com/apis-sdks/rest-api/using-app-center-to-get-an-api-key.html">API Keys</a>
+					</td>
+					<td>
+						<a href="http://www.w3schools.com">Node Demo App Github Repo</a>
+					</td>					
+				</tr>
+			</table>
+			
+			
+			
+													
+		</div>	
+
 	</div>
 
 </div><!--/container-fluid-->

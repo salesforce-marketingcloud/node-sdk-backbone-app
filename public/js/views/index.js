@@ -25,8 +25,7 @@ define(function(require) {
     return BaseView.extend({
         isReady: false,
         events: {
-        	'click #bTestRest': 'onBtnTestRestClick'
-        	,'click #bTestSoap': 'onBtnTestSoapClick'
+        	'click #bTestSoapRest': 'onBtnTestSoapRestClick'
         	,'click #bTest': 'onBtnTestClick'
         	,'click #objectTypeGroup input': 'onObjectTypeGroupClick'
         },
@@ -68,7 +67,8 @@ define(function(require) {
             if (this.hasRendered === false) {
                 this.fetchCollections();
             }
-
+            window.onresize = this.onResize;
+			this.onResize();
             // Show the element for this view
             this.$el.show();
 
@@ -77,7 +77,18 @@ define(function(require) {
 
             return this;
         },
-
+		onResize: function(e) {
+			var workAreaHeight = this.getWorkAreaHeight();
+			//console.log('onResize',workAreaHeight);
+			$('#resultArea').height( workAreaHeight );
+		},
+		getWorkAreaHeight: function() {
+			var outerHeight = 0;
+			$('.api').each(function() {
+				outerHeight += $(this).outerHeight();
+			});
+			return outerHeight;
+		},		
         setupCollections: function () {
                        
         },
@@ -117,13 +128,10 @@ define(function(require) {
 				$('#dataResults').val(data.responseText);
 			});        
         },       
-        onBtnTestRestClick: function() {
+        onBtnTestSoapRestClick: function() {
         	$('#dataResults').val('');
-        	this.testGet('test-rest');
-        },
-        onBtnTestSoapClick: function() {
-        	$('#dataResults').val('');
-        	this.testGet('test-soap');
+        	var selection = $('#soaprestGroup input:radio:checked').val();
+        	this.testGet('test-' + selection);
         },
         onBtnTestClick: function() {
         	$('#dataResults').val('');
@@ -134,22 +142,18 @@ define(function(require) {
         	this.testGet('test-'+objtype+'-'+datatype);
         },
         onObjectTypeGroupClick: function() {
-        	var objName = $('#objectTypeGroup input:radio:checked').val();        	
-        	if (objName === 'triggeredsend') {
-        		this.enableOperation('send',true);
-        	} else if (objName === 'sms') {        		
-        		this.enableOperation('post',false);
-        		this.enableOperation('get',false);
-        		this.enableOperation('patch',false);
-        		this.enableOperation('delete',false);
-        		this.enableOperation('send',true);
-        	} else {
-        		this.enableOperation('post',true);
-        		this.enableOperation('get',true);
-        		this.enableOperation('patch',true);
-        		this.enableOperation('delete',true);        	
-        		this.enableOperation('send',false);
-        	} 	
+        	var $rdo = $('#objectTypeGroup input:radio:checked');
+        	var access = $rdo.data('method');
+        	var map = {
+        		c: 'post'
+        		,r: 'get'
+        		,u: 'patch'
+        		,d: 'delete'
+        		,s: 'send'
+        	};
+        	for (var key in map) {
+        		this.enableOperation(map[key],($.inArray(key,access) !== -1));
+        	}
         },
         enableOperation: function(name,val) {
         	var $rdo = $('#dataTypeGroup :input:radio[value="'+name+'"]');

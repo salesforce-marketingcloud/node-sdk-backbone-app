@@ -1,6 +1,6 @@
 {
   "name": "node-sdk-backbone-app",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "engines": { "node": "0.12.x" }, 
   "repository": {
     "type": "git",
-    "url": "https://github.com/timsim00/node-sdk-backbone-app.git"
+    "url": "https://github.com/salesforcefuel/node-sdk-backbone-app.git"
   },
   "author": "Drew Simmons",
   "private": true,

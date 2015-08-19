@@ -2,7 +2,9 @@
 
 ![alt tag](screenshot.png)
 
-## $ node index
+## $ NODE_ENV=dev node index
+
+httpS://localhost:5000
 
 ATTENTION: The default mode of this app returns code examples to the UI if no credentials are supplied.
 If you run this app with credentials, do not deploy it to a public URL unless the app is password protected.
