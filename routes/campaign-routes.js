@@ -44,7 +44,7 @@ function postCampaign ( req, res ) {
 
 function patchCampaign ( req, res ) {
 	var options = {	
-		id: 553,	
+		id: 1658,	
 		props: {"name" : "SDKCampaign", "description": "New desc for SDK Created Campaign"} //include all fields, even if not changed.
 	};	
 	var campaign = ET_Client.campaign(options);
