@@ -178,7 +178,7 @@ function postDERow ( req, res ) {
 function getDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"	//required
-		,props: ['Prop1', 'Prop2', 'Prop3'] 	//required: which properties do you want to get
+		,props: ['FieldName1', 'FieldName2', 'FieldName3'] 	//required: which properties do you want to get
 		/*
 		,filter: {						//remove filter for all.
         	leftOperand: 'Value',
@@ -200,10 +200,11 @@ function getDERow ( req, res ) {
 	});
 };
 
+// requireds a primary key to work
 function patchDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey", "Value" : "NewValue"}	
+		,props: {"PrimaryKeyFieldName" : "VALUE_OF_PRIMARY_KEY_TO_UPDATE", "FieldName1" : "New Value for field 1"}	
 	};	
 	var deRow = ET_Client.dataExtensionRow(options)
 	
@@ -218,10 +219,11 @@ function patchDERow ( req, res ) {
 	});
 };
 
+// requireds a primary key to work
 function deleteDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey"}	
+		,props: {"PrimaryKeyFieldName" : "VALUE_OF_PRIMARY_KEY_TO_DELETE"}	
 	};	
 	var deRow = ET_Client.dataExtensionRow(options)
 	
