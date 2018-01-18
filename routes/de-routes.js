@@ -159,7 +159,7 @@ restRouter.get( '/test-de-column-delete', function( req, res ) {
 function postDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey", "Value" : "Some random text for the value field"}	
+		,props: {"FieldName1" : "Value for field 1", "FieldName2" : "Some other text for field 2", "FieldName3" : "Text for field 3"}	
 	};			
 	
 	var deRow = ET_Client.dataExtensionRow(options);	
@@ -178,7 +178,7 @@ function postDERow ( req, res ) {
 function getDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"	//required
-		,props: ['Key', 'Value'] 	//required
+		,props: ['FieldName1', 'FieldName2', 'FieldName3'] 	//required: which properties do you want to get
 		/*
 		,filter: {						//remove filter for all.
         	leftOperand: 'Value',
@@ -200,10 +200,11 @@ function getDERow ( req, res ) {
 	});
 };
 
+// requireds a primary key to work
 function patchDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey", "Value" : "NewValue"}	
+		,props: {"PrimaryKeyFieldName" : "VALUE_OF_PRIMARY_KEY_TO_UPDATE", "FieldName1" : "New Value for field 1"}	
 	};	
 	var deRow = ET_Client.dataExtensionRow(options)
 	
@@ -218,10 +219,11 @@ function patchDERow ( req, res ) {
 	});
 };
 
+// requireds a primary key to work
 function deleteDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey"}	
+		,props: {"PrimaryKeyFieldName" : "VALUE_OF_PRIMARY_KEY_TO_DELETE"}	
 	};	
 	var deRow = ET_Client.dataExtensionRow(options)
 	
