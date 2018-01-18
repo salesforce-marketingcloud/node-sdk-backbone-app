@@ -178,7 +178,7 @@ function postDERow ( req, res ) {
 function getDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"	//required
-		,props: ['Key', 'Value'] 	//required
+		,props: ['Prop1', 'Prop2', 'Prop3'] 	//required: which properties do you want to get
 		/*
 		,filter: {						//remove filter for all.
         	leftOperand: 'Value',
