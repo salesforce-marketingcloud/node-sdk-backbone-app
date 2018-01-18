@@ -159,7 +159,7 @@ restRouter.get( '/test-de-column-delete', function( req, res ) {
 function postDERow ( req, res ) {
 	var options = {
 		Name: "SDKDataExtension"
-		,props: {"Key" : "ThisIsTheKey", "Value" : "Some random text for the value field"}	
+		,props: {"FieldName1" : "Value for field 1", "FieldName2" : "Some other text for field 2", "FieldName3" : "Text for field 3"}	
 	};			
 	
 	var deRow = ET_Client.dataExtensionRow(options);	
